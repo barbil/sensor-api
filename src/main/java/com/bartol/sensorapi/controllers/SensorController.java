@@ -7,7 +7,6 @@ import com.bartol.sensorapi.services.SensorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,7 +36,7 @@ public class SensorController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<UserAddress> searchNeighbour(@RequestBody Map<String, String> sensor) {
         log.info("Accepted username is " + sensor.get("username"));
         Optional<UserAddress> optionalUserAddress = sensorService.searchNeighbour(sensor.get("username"));
