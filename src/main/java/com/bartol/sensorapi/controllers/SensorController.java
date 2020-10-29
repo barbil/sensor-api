@@ -66,4 +66,10 @@ public class SensorController {
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @PostMapping("/blacklist")
+    public ResponseEntity<?> blacklist(@RequestBody UserAddress userAddress) {
+        sensorService.blacklist(userAddress);
+        return ResponseEntity.ok().build();
+    }
 }

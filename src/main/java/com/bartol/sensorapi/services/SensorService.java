@@ -68,4 +68,13 @@ public class SensorService {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
     }
+
+    public void blacklist(UserAddress userAddress) {
+        Optional<SensorDescription> blacklisted = sensors.stream()
+                .filter(t -> t.getIpAddress().equals(userAddress.getIpAddress()))
+                .filter(t -> t.getPort() == userAddress.getPort())
+                .findFirst();
+
+        blacklisted.ifPresent(sensors::remove);
+    }
 }
